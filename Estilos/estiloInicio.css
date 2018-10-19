@@ -1,0 +1,82 @@
+
+p{color: red;}
+/*body{ background: #f2eee9;}*/
+h5{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+a:link{
+	text-decoration: none;
+	
+	
+}
+a{
+	color: #ffffff;
+}
+img{
+	vertical-align: middle;
+}
+#formulario{
+	display: flex;
+	align-items: center;
+
+
+}
+#formContenido{
+	margin: 0 auto;
+}
+#encabezado{
+	font-family: Helvetica, Arial;
+	font-size: 30px;
+	color: rgba(95,109,130,0.9);
+	left:  45%;
+}
+#futer{
+	font-family: Helvetica, Arial;
+	color: rgba(95,109,130,0.9);
+	padding-top: 50px
+	font-size: 30px;	
+
+}
+#futer2{
+	border-color: black;
+	border: 5px;
+	border-width: 5px;
+}
+
+#resp{
+	background-color: #4abb4fcc;
+	border: 1px solid rgb(21, 112, 26);
+}
+
+
+.divEncabezado{
+	
+	margin: auto;
+	
+}
+
+.emiLog{
+	
+	/*background-color: rgba(241, 247, 225, 0.904); */
+	background-repeat: no-repeat;
+	background-position: center 10px;
+	background-image:  url(../Imagenes/page.png);
+}
+.admin{
+	font-family: Helvetica, Arial;
+	font-size: 15px;
+	color: rgba(95,109,130,0.9);
+	left:  45%;
+}
+.campo{
+	display: block;
+	align-items: center;
+	
+	padding: 6%;
+}
+.contenido{
+	margin: 0 auto;
+		
+}

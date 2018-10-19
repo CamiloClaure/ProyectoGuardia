@@ -1,0 +1,128 @@
+
+*{
+	font-family: Helvetica, Arial;
+	
+}
+/*SECCION ETIQUETAS*/
+html{
+	height: 100%;
+}
+body{
+	height: 75%;
+}
+
+li:hover{
+	
+	/*text-decoration: none;
+	 background-color: #036A9E;
+	 cursor: pointer;*/
+}
+li:active{
+	text-decoration: none;
+	opacity: 0.8;
+	 background-color: #036A9E;
+}
+th{
+	background-color: #1883ba;
+	color: #ffffff;
+	padding: 1em;
+}
+td{
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 12px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	text-align: center;
+	
+	
+}
+hr{
+	clear: both;
+}
+
+
+iframe{
+	margin: 0;
+	padding: 0;
+
+}
+/*SECCION IDs*/
+#pageLogo{
+	border: 1px solid white;
+	border-radius: 100%;
+	width:100;
+	 height:100;
+}
+#salir{
+	color: rgb(255,255,255,0.5);
+}
+#salir:hover{
+	color: rgb(255,255,255,0.8);
+}
+#bodyEstudiante{
+	
+	background-image: url(../Imagenes/page.png);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center 20px;
+	background-attachment: fixed;
+}
+
+#frameTabla{
+	width: 100%;
+	height: 100%;
+	border: 0px solid transparent;
+	overflow: hidden; 
+
+}
+#tablaGuardia{
+	border: 0px solid #036A9E;
+	border-collapse: collapse;
+	table-layout: auto;
+}
+
+#imgDiv{
+	float: left;
+}
+#tablaLoquilla{
+	border: 0px solid #036A9E;
+	border-collapse: collapse;
+	table-layout: auto;
+	background-color: rgba(149, 214, 240, 0.842);
+	overflow: hidden; 
+}
+#bodyTabla{
+	height: 100%;
+	background-color:transparent;
+}
+
+#encabezadoUsuario, #encabezadoUsuarioCod{
+	padding-left: 10px;
+	margin-left: 30px;
+	font-family: Helvetica, Arial;
+	font-size: 20px;
+	color: rgba(95,109,130,0.9);
+}
+#futer{
+
+}
+/*SECCION CLASES*/
+.barra{
+	
+	background-color: #1883ba;
+	justify-content: stretch;
+	overflow: hidden;
+
+}
+
+
+.noOverflow{
+	
+	height: 90%;
+	width: 90%;
+	overflow: visible;
+	
+	
+}
+

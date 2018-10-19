@@ -1,0 +1,57 @@
+
+.formPermisoAlex
+{
+	width: 450px;
+	margin:auto;
+	background: rgba(0,0,0,0.1);
+	padding: 10px 20px;
+	box-sizing: border-box;
+	margin-top: 20px;
+	border-radius: 7px;
+}
+.formularioH{
+	color: #5499C7;
+	text-align: center;
+	margin: 0;
+	font-size: 30px;
+	margin-bottom: 20px
+}
+.miInput
+{
+	 width: 100%;
+	 margin-bottom: 20px;
+	 padding: 7px;
+	 box-sizing: border-box;
+	 font-size: 17px;
+	 border: none;
+}
+textarea{
+min-height: 100px;
+max-height: 200px;
+max-width: 100%;
+
+}
+#boton
+{
+	background: #31384A
+
+	color:#FFF;
+	padding: 20PX;
+	border:groove;
+
+}
+#boton:hover
+{
+	cursor: pointer;
+	background:#979A9A;
+}
+@media(max-width: 480px)
+{
+	form{
+		width: 100%
+	}
+}
+#texa:hover
+{
+	background: #979A9A;
+}
