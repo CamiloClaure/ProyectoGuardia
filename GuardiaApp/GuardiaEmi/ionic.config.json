@@ -1,7 +1,0 @@
-{
-  "name": "GuardiaEmi",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
