@@ -37,25 +37,30 @@ function borrarLista(evento){
 }
 
 function modificarLista(evento){
-            var today = new Date();
+        var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
         var yyyy = today.getFullYear();
 
         if(dd<10) {
-            dd = '0'+dd
+            dd = '0'+dd;
         } 
 
         if(mm<10) {
-            mm = '0'+mm
+            mm = '0'+mm;
         } 
 
-        today = yyyy + '-' + mm + '-' + dd;
-
-   /* var fecha1 = moment($(this).attr("fecha"));
-    var fecha2 = moment(today);
+        today = yyyy + '' + mm + '' + dd;
+        var fechaToday = parseInt(today);
+       
+        var fechaInicio = $(this).attr("fecha").split("-");
+        var fechaI = fechaInicio[0] + fechaInicio[1] + fechaInicio[2];
+        var fechaIn = parseFloat(fechaI);
+        
+        var dias = fechaIn - fechaToday;
+   
     var grupo = parseInt(evento.target.name);
-    if(fecha1.diff(fecha2,"days")<0){
+    if(dias<0){
         $('#tblFinalModificar').html("nell");
        
     }else{
@@ -69,16 +74,14 @@ function modificarLista(evento){
                 //alert(data);
             }
         });
-    }*/
+    }
     
     
-    var fechadesde = new Date($(this).attr("fecha")).getTime();
-    var fechahasta = new Date(today).getTime();    
+     
     
-    var dias = fechahasta - fechadesde;
         var diff_ =dias/(1000 * 60 * 60 * 24);
-        console.log("Fecha inicio: " + $(this).attr("fecha") + " Fecha fin: " + today);
-        console.log(diff_);
+        console.log("Fecha inicio: " + fechaIn + " Fecha fin: " + fechaToday);
+        console.log(dias);
    
 }
 
