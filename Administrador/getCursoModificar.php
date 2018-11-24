@@ -26,8 +26,8 @@ $tabla = '<form id="formTmpEstModificar">
     <th>Seleccionar</th></tr>';
 
 while($datos = mysqli_fetch_array($respuesta)){
-    $tabla .= '<tr>
-                    <td class="nroFila">'.$idFila.'</td>
+    $tabla .= '<tr class="nroFila"  value="'.$datos['codigo'].'">
+                    <td value="'.$datos['codigo'].'">'.$idFila.'</td>
                     <td>
                     <input type="hidden" name=codigo id="codEst'.$idFila.'" value="'.$datos['codigo'].'">'.$datos['codigo'].'</td>
                     <td>

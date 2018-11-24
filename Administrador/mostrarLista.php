@@ -36,7 +36,7 @@ while($datos = mysqli_fetch_array($respuesta)){
                     </td>
                     <td>   
                         <button name="'.$datos['grupo'].'" class="btn btn-sm btn-info btn-show p-0 visualizar" data-toggle="modal" data-target="#modalNewStd" alt="Mostrar"><img class="blanco" fill="none" name="'.$datos['grupo'].'" src="../Imagenes/svgMostrar.png" alt="Mostrar lista"/></button>
-                        <button name="'.$datos['grupo'].'" class="btn btn-sm btn-info btn-show p-0" data-toggle="modal" data-target="#editarLista"><img class="modificarLista blanco" fill="none" name="'.$datos['grupo'].'" src="../Imagenes/svgEditarPNG.png" alt="Editar lista"/></button>
+                        <button fecha="'.$datos['fecha'].'" name="'.$datos['grupo'].'" class="btn btn-sm btn-info btn-show p-0 modificarLista" data-toggle="modal" data-target="#editarLista"><img class="modificarLista blanco" fill="none" name="'.$datos['grupo'].'" fecha="'.$datos['fecha'].'" src="../Imagenes/svgEditarPNG.png" alt="Editar lista"/></button>
                         <button name="'.$datos['grupo'].'" class="btn btn-sm btn-info p-0"><img class="borrar blanco"  value="'.$datos['grupo'].'" name="'.$datos['grupo'].'" fill="none" src="../Imagenes/svgEliminar.png" alt="Eliminar lista"/></button>
                     </td>
 

@@ -36,8 +36,8 @@ $salida .= '<form id="frmReadyToSendStudents"><table id="listaGuardiaModifcarT" 
     </tr>';
 
 while($datos = mysqli_fetch_array($respuestaTabla)){
-    $salida .= '<tr>
-                    <td class="nroFila">'.$idFila.'</td>
+    $salida .= '<tr class="nroFila" value="'.$datos['codigo'].'">
+                    <td >'.$idFila.'</td>
                    
                     <td>'.$datos['codigo'].'</td>
                    

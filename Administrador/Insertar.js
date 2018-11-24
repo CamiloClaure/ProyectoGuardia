@@ -37,17 +37,49 @@ function borrarLista(evento){
 }
 
 function modificarLista(evento){
+            var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        } 
+
+        if(mm<10) {
+            mm = '0'+mm
+        } 
+
+        today = yyyy + '-' + mm + '-' + dd;
+
+   /* var fecha1 = moment($(this).attr("fecha"));
+    var fecha2 = moment(today);
     var grupo = parseInt(evento.target.name);
-    $.ajax({
+    if(fecha1.diff(fecha2,"days")<0){
+        $('#tblFinalModificar').html("nell");
+       
+    }else{
+        $.ajax({
                 
-        type: 'POST',
-        url: 'getLista.php',
-        data: 'grupo='+grupo,
-        success: function(data){
-            $('#bodyListaModificar').html(data);
-            //alert(data);
-        }
-    });
+            type: 'POST',
+            url: 'getLista.php',
+            data: 'grupo='+grupo,
+            success: function(data){
+                $('#bodyListaModificar').html(data);
+                //alert(data);
+            }
+        });
+    }*/
+    
+    
+    var fechadesde = new Date($(this).attr("fecha")).getTime();
+    var fechahasta = new Date(today).getTime();    
+    
+    var dias = fechahasta - fechadesde;
+        var diff_ =dias/(1000 * 60 * 60 * 24);
+        console.log("Fecha inicio: " + $(this).attr("fecha") + " Fecha fin: " + today);
+        console.log(diff_);
+   
 }
 
 function moverComponentes(){
@@ -55,18 +87,23 @@ function moverComponentes(){
         //var padre = $(this).parent
         if (this.checked) {
             console.log('Checkbox ' + $(this).parent().val() + ' checked');
-            $(this).parent().parent().appendTo('#listaGuardiaModifcarT');
-            
+            //$(this).parent().parent().appendTo('#listaGuardiaModifcarT');
+            var existe = false;
             var largo = $('#listaGuardiaModifcarT .nroFila').length;
-            for(i = 1;i <= largo;i++){
-                $($('#listaGuardiaModifcarT .nroFila')[i-1]).text(i);
-                console.log(i);
+
+            for(i = 1; i <= largo;i++){
+                if($($('#listaGuardiaModifcarT .nroFila')[i-1]).attr("value") == $(this).attr("value")){
+                    existe = true;
+                    console.log($(this).value);
+                    console.log($($('#listaGuardiaModifcarT .nroFila')[i-1]).val());
+                }
             }
-            largo = $('#listaEstudiantesModificar .nroFila').length;
-            for(i = 1;i <= largo;i++){
-                $($('#listaEstudiantesModificar .nroFila')[i-1]).text(i);
-                console.log(i);
+            if(!existe){
+                $(this).parent().parent().appendTo('#listaGuardiaModifcarT');
+                console.log("no existe"); console.log($(this).val());
+                console.log($($('#listaGuardiaModifcarT .nroFila')[0]).attr("value"));
             }
+            
         } else {
             console.log('Checkbox ' + $(e.currentTarget).val() + ' unchecked');
         }
@@ -82,7 +119,7 @@ $('#btnCrearLista').click(function(){
         success: function(data){
             $('#resultado').html(data);
             cargarLista();
-            //location.reload();
+            location.reload();
         }
     });
 });
@@ -187,7 +224,7 @@ $('#formLista').submit(function() {
         success: function(data) {
             
             $('#tblFinal').html(data);
-          //cargarLista();
+          cargarLista();
 
         }
     });
@@ -276,6 +313,18 @@ $('#select-oficiales').ready(function() {
     return false;
 });
 
+$('#btnSalir').click(function (e) { 
+    $.ajax({
+        type: 'POST',
+        url: 'salir.php',
+        // Mostramos un mensaje con la respuesta de PHP
+        success: function(data) {
+            $('#btnSalir').html(data);
+           
+        }
+    });
+    return false;
+});
 
 function showHint(str) {
     if (str.length == 0 || str == "") { 
@@ -398,9 +447,11 @@ function cargarLista(){
                 botones[i].addEventListener('click',moverInfo);
                 btnEliminar[i].addEventListener('click',borrarLista);
                 btnModificar[i].addEventListener('click',modificarLista);
+                
             }
-            
+            var btnModificar = document.querySelectorAll('.btn-modificar');
             document.getElementById("btnReb").addEventListener('click',solicitud);
+            document.getElementById("btnNegar").addEventListener('click',solicitudNegada);
            
         }
     };
@@ -423,16 +474,29 @@ function moverInfo(evento){
 }
 
  
-       function solicitud(){
-              var sucod = document.getElementById("sucodigo").value;
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("tablaYeic").innerHTML=this.responseText;
-          
-          }
-           };
-          xhttp.open("GET", "Aprobacion.php?cod="+sucod, true);
-          xhttp.send();
-          
-        }
+function solicitud(){
+        var sucod = document.getElementById("sucodigo").value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    document.getElementById("tablaYeic").innerHTML=this.responseText;
+    
+    }
+    };
+    xhttp.open("GET", "Aprobacion.php?cod="+sucod, true);
+    xhttp.send();
+    
+}
+function solicitudNegada(){
+    var sucod = document.getElementById("sucodigo").value;
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById("tablaYeic").innerHTML=this.responseText;
+
+}
+};
+xhttp.open("GET", "Negacion.php?cod="+sucod, true);
+xhttp.send();
+
+}

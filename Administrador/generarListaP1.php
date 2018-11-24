@@ -10,8 +10,8 @@ $fecha = $_POST["fecha"];
 $fecha_actual = new DateTime(date('Y-m-d'));
 $fecha_actual = $fecha_actual->format('Y-m-d');
 
-$JefeR = explode("-",$_POST["jefeRonda"]) ;
-$CapS = explode("-",$_POST["capServicio"]);
+$JefeR = explode("~",$_POST["jefeRonda"]) ;
+$CapS = explode("~",$_POST["capServicio"]);
 $estudiantes = $_POST["codSelected"];
 $idFila = 1; 
 

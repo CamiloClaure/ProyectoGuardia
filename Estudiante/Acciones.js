@@ -76,3 +76,18 @@ $('#validar').submit(function() {
     return false;
 }); 
 */
+$('#frmPermisoAlex').submit(function() {
+    
+    $.ajax({
+        type: 'POST',
+        url: 'codigo.php',
+        data: $('#frmPermisoAlex').serialize(),
+   
+        success: function(data) {
+           
+            $('#resPermiso').html(data);
+
+        }
+    });        
+    return false;
+}); 

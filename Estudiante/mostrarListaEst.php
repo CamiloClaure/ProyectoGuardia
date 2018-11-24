@@ -5,7 +5,7 @@ $consulta = "select concat(ofi.apellido,' ',ofi.nombre) as 'oficial',grupo,fecha
 from LISTA_GUARDIA lg
 inner join OFICIAL ofi
 on ofi.idoficial = lg.oficial
-where cargo = 'Cap. de servicio'";
+where cargo = 'Cap. de servicio' and borrado = 0";
 $respuesta = mysqli_query($conn,$consulta);
 $salida = "";
 $id = 1;

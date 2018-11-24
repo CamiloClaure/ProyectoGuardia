@@ -20,7 +20,7 @@ require_once('../Conexion.php');
 
         <script src="../Estilos/EstiloSelect/jquery.min.js"></script>
         <script src="../Estilos/js/bootbox.min.js"></script>
-       
+        <script src="../Estilos/js/moment.min.js"></script>
 
         <script src="../Estilos/EstiloSelect/bootstrap.bundle.min.js"></script>
         <!------------------------------------------------------------------>
@@ -46,21 +46,11 @@ require_once('../Conexion.php');
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Solicitudes</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Gestionar personal
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Oficiales Superiores</a>
-                            <a class="dropdown-item" href="#">Oficiales Subalternos</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Estudiantes</a>
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <h5 class="nav-link"><?php echo $_SESSION['usuario'];?></h5>
                     </li>
                 </ul>
+                <div class="bg-dark  "><a class="nav-link" href="../index.html">Salir</a></div>
             </div>
         </nav>
         <hr>
@@ -211,27 +201,7 @@ require_once('../Conexion.php');
         </div>
         <hr>
 
-        <div class="modal fade" id="correo">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Correo</h4>
-                        </div>
-                        <div class="modal-body">
-                           <form action="thread.php" method="post">
-                               <input type="email" name="correo" id="email">
-                               <input type="text" name="contenido" id="content">
-                               <input type="date" name="fecha" id="date">
-                               <input type="submit" value="send">
-                           </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btnCancelarLista" data-dismiss="modal">Cancelar</button>
-                            <button id="btnSendCorreo" type="button" class="btn btn-primary">Crear</button>
-                    </div>
-                </div>
-            </div>
-            </div>
+       
         <div class="modal fade" id="mListaAprobar">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -770,7 +740,7 @@ require_once('../Conexion.php');
             <div class="modal-dialog modal-lg modal-xxl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Nueva Lista</h4>
+                        <h4 class="modal-title">Editar Lista</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                     </div>
@@ -910,7 +880,7 @@ require_once('../Conexion.php');
         <div id="resultado"></div>
         
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-dialog modal-xxl" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Permisos</h5>
@@ -926,7 +896,9 @@ require_once('../Conexion.php');
                   </div>
                     <input type="text" id="sucodigo" name="sucodigo" class="form-control" placeholder="Introduzca el codigo del estudiante cuyo cambio sera aceptado " aria-label="Username" aria-describedby="basic-addon1">
               </div>
+              <form action="" id="formControlPermiso"></form>
               <table class="table">
+
                 <thead class="thead-blue">
                   <tr>
         <!--      <th scope="col">#</th>-->
@@ -937,11 +909,12 @@ require_once('../Conexion.php');
                     <th scope="col">Comentario</th>
                     <th scope="col">Nombre cambio</th>
                     <th scope="col">Codigo cambio </th>
+                
                   </tr>
               </thead>
               <tbody id="tablaYeic">
               <?php
-                  $insertar = "select nombre,codigoEst,fechadelaguard,fechadelcamb,comentario,nombre_cam,codig_cam FROM PERMISO where bandera_permiso=0";
+                  $insertar = "select registroPermiso, nombre,codigoEst,fechadelaguard,fechadelcamb,comentario,nombre_cam,codig_cam FROM PERMISOS where bandera_permiso=0";
                   $consulta = mysqli_query($conn,$insertar);
                   if($consulta){
                       while($rs=mysqli_fetch_array($consulta))
@@ -954,6 +927,7 @@ require_once('../Conexion.php');
                    .'<td>'.$rs['comentario'].'</td>'
                  .'<td>'.$rs['nombre_cam'].'</td>'
                  .'<td>'.$rs['codig_cam'].'</td>'
+                 
 
                    .'</tr>';
                     }}
@@ -964,6 +938,7 @@ require_once('../Conexion.php');
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" id="btnReb">Aceptar el cambio </button>
+                <button type="button" class="btn btn-danger" id="btnNegar">Denegar el cambio </button>
               </div>
             </div>
           </div>

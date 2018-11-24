@@ -48,24 +48,11 @@ $fecha = $fecha->format ('Y-m-d');
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="Solicitud" href="#">Solicitudes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cartas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="imprimir();">Imprimir</a>
-                    </li>
-                    <li class="nav-item">
-                        <h5 class="nav-link"><?php echo $fecha[0];?></h5>
-                    </li>
+                   
+                    
 
                 </ul>
-                <div class="bg-dark  "><a class="nav-link" id="salir" href="#">Salir</a></div>
+                <div class="bg-dark  "><a class="nav-link" id="salir" href="../index.html">Salir</a></div>
             </div>
         </div>
     </nav>
@@ -80,10 +67,10 @@ $fecha = $fecha->format ('Y-m-d');
                   <div class="card-body p-0">
 
                    <div class="nav flex-column nav-pills text-white  bg-secondary " id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link text-white active" id="v-pills-inicio-tab" data-toggle="pill" href="#v-pills-inicio" role="tab" aria-controls="v-pills-inicio" aria-selected="true">Listas</a>
-      <a class="nav-link text-white" id="v-pills-seguridad-tab" data-toggle="pill" href="#v-pills-seguridad" role="tab" aria-controls="v-pills-seguridad" aria-selected="false">Seguridad</a>
-      <a class="nav-link text-white" id="v-pills-chat-tab" data-toggle="pill" href="#v-pills-chat" role="tab" aria-controls="v-pills-chat" aria-selected="false">Formulario</a>
-      <a class="nav-link text-white" id="v-pills-otros-tab" data-toggle="pill" href="#v-pills-otros" role="tab" aria-controls="v-pills-otros" aria-selected="false">Otros</a>
+                      <a class="nav-link text-white active" id="v-pills-inicio-tab" data-toggle="pill" href="#v-pills-inicio" role="tab" aria-controls="v-pills-inicio" aria-selected="true">Listas</a>
+                      <a class="nav-link text-white" id="v-pills-seguridad-tab" data-toggle="pill" href="#v-pills-seguridad" role="tab" aria-controls="v-pills-seguridad" aria-selected="false">Seguridad</a>
+                      <a class="nav-link text-white" id="v-pills-chat-tab" data-toggle="pill" href="#v-pills-chat" role="tab" aria-controls="v-pills-chat" aria-selected="false">Formulario cambio de guardia</a>
+                      <a class="nav-link text-white" id="v-pills-otros-tab" data-toggle="pill" href="#v-pills-otros" role="tab" aria-controls="v-pills-otros" aria-selected="false">Solicitudes realizadas</a>
     </div>
                   </div>
               </div>
@@ -146,27 +133,127 @@ $fecha = $fecha->format ('Y-m-d');
       <div class="tab-pane fade" id="v-pills-chat" role="tabpanel" aria-labelledby="v-pills-chat-tab">
       <!-- Comienzo del formulario de Permisos -->
 
-      <form class="formPermisoAlex" method="post" enctype="multipart/form-data" action="codigo.php" >
+      <form id="frmPermisoAlex" method="post" enctype="multipart/form-data" action="codigo.php" >
           <h2 class="formularioH">Formulario</h2>
+        <div class="row">
+            <div class="col">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" name="labelnombre"
+                            id="lNombre">Nombre</span>
+                  </div>
+                  <input required type="text" class="form-control" name="Nombre" placeholder="Nombre" aria-label="Nombre" aria-describedby="lNombre">
+              </div>
 
-          <input class="miInput" type="text" name="Nombre" placeholder="nombre">
-          <input class="miInput" type="text" name="codigo" placeholder="Codigo">
-           <input class="miInput" type="text" name="nombredecambio" placeholder="nombre del estudiante de cambio">
-             <input class="miInput" type="text" name="codigocam" placeholder="Codigo del estudiante de cambio">
-          <h3>Fecha de guardia actual</h3>
-          <input class="miInput" type="date" name="Fecha" >
-          <h3>Fecha de cambio de guardia</h3>
-          <input class="miInput" type="date" name="Fechacambio" >
-          <textarea class="miInput" name="mensaje" placeholder="Explique su motivo del cambio de guardia"></textarea>
-          <input class="miInput" type="file" name="archivo" value="Archivo">
+            </div>
+            <div class="col">
 
-          <input class="miInput" type="submit" name="enviar" id="boton" value="Enviar" >
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="lCodigo">Codigo</span>
+                    </div>
+                    <input required type="text" class="form-control" name="codigo" placeholder="Codigo" aria-label="Codigo" aria-describedby="lCodigo">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                    <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" name="labelnombre">Nombre del cambio</span>
+                            </div>
+                            <input required type="text" class="form-control" name="nombredecambio" placeholder="Nombre del estudiante con quien va a cambiar guardia" aria-label="Nombre" aria-describedby="lNombre">
+                        </div>
+            </div>
+            <div class="col">
+                    <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="lCodigoCam">Codigo del cambio</span>
+                            </div>
+                            <input required type="text" class="form-control" name="codigocam" placeholder="Codigo del estudiante con quien va a cambiar guardia" aria-label="Codigo" aria-describedby="lCodigo">
+                        </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col">
+                    <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="lFechaCam">Fecha de guardia actual</span>
+                            </div>
+                            <input required type="date" class="form-control" name="Fecha">
+                        </div>
+            </div>
+            <div class="col">
+                    <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="lFechaCamM">Fecha de cambio de guardia</span>
+                            </div>
+                            <input required type="date" class="form-control" name="Fechacambio">
+                        </div>
+            </div>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="lFechaCam">Detalle</span>
+            </div>
+            <textarea class="miInput" name="mensaje" placeholder="Explique su motivo del cambio de guardia"></textarea>
+        </div>
+          
+          <input class="form-control-file" type="file" name="archivo" value="Archivo">
+
+          <input class="btn btn-primary" type="submit" name="enviar" value="Enviar" >
         </form>
-
+        <div id="resPermiso"></div>
         <!-- Fin del formulario -->
 
       </div>
-      <div class="tab-pane fade" id="v-pills-otros" role="tabpanel" aria-labelledby="v-pills-otros-tab">Insertar alguna opcion aqui</div>
+      <div class="tab-pane fade" id="v-pills-otros" role="tabpanel" aria-labelledby="v-pills-otros-tab">
+      <table class="table">
+                <thead class="thead-blue">
+                  <tr>
+        <!--      <th scope="col">#</th>-->
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Fecha de guardia</th>
+                    <th scope="col">Fecha de cambio de guardia</th>
+                    <th scope="col">Comentario</th>
+                    <th scope="col">Nombre cambio</th>
+                    <th scope="col">Codigo cambio </th>
+                    <th scope="col">Estado</th>
+                  </tr>
+              </thead>
+              <tbody id="tablaYeic">
+              <?php
+                  $insertar = "select bandera_permiso,nombre,codigoEst,fechadelaguard,fechadelcamb,comentario,nombre_cam,codig_cam FROM PERMISOS where codigoEst = '$user'";
+                  $consulta = mysqli_query($conn,$insertar);
+                  if($consulta){
+                      while($rs=mysqli_fetch_array($consulta))
+                  {
+                      $estado = "";
+                      if($rs['bandera_permiso'] == 0){
+                          $estado = "Pendiente";
+                      }elseif($rs['bandera_permiso'] == 1){
+                        $estado = "Aprobado";
+                      }else{
+                          $estado = "Denegado";
+                      }
+                echo '<tr>'
+                   .'<td>'.$rs['nombre'].'</td>'
+                   .'<td>'.$rs['codigoEst'].'</td>'
+                   .'<td>'.$rs['fechadelaguard'].'</td>'
+                   .'<td>'.$rs['fechadelcamb'].'</td>'
+                   .'<td>'.$rs['comentario'].'</td>'
+                 .'<td>'.$rs['nombre_cam'].'</td>'
+                 .'<td>'.$rs['codig_cam'].'</td>'
+                 .'<td>'.$estado.'</td>'
+
+                   .'</tr>';
+                    }}
+                  ?>
+          </tbody>
+        </table>
+      </div>
     </div>
 
         </div>

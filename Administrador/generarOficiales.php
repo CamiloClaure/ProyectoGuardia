@@ -16,7 +16,7 @@ $oficial = ' <div class="col-sm-6"> <div class="input-group input-group-sm mb-3"
                                     <select id="selectModificarJefe" class="form-control form-control-sm" name="jefeRonda">
                                     <option selected="true" disabled>Seleccionar</option>';
 while($datos = mysqli_fetch_array($respuesta)){
-    $oficial .= '<option value="'.$datos['oficialSuperior'].'-'.$datos['idoficial'].'">'.$datos['oficialSuperior'].'-'.$datos['idoficial'].'</option>';
+    $oficial .= '<option value="'.$datos['oficialSuperior'].'~'.$datos['idoficial'].'">'.$datos['oficialSuperior'].'-'.$datos['idoficial'].'</option>';
 }
 $oficial .= '</select></div></div></div>';
 
@@ -32,7 +32,7 @@ $oficial .= '<div class="col-sm-6"> <div class="input-group input-group-sm mb-3"
                                     <select id="selectModificarCap" class="form-control form-control-sm" name="capServicio" placeholder="Seleccionar">
                                     <option selected="true" disabled>Seleccionar</option>';
 while($datos = mysqli_fetch_array($respuesta)){
-    $oficial.= '<option value="'.$datos['oficialSubalterno'].'-'.$datos['idoficial'].'">'.$datos['oficialSubalterno'].'-'.$datos['idoficial'].'</option>';
+    $oficial.= '<option value="'.$datos['oficialSubalterno'].'~'.$datos['idoficial'].'">'.$datos['oficialSubalterno'].'-'.$datos['idoficial'].'</option>';
 }
 $oficial .= '</select></div></div></div><script>document.getElementById("igrupo").value = '.$grupo.';</script>';
 echo $oficial;

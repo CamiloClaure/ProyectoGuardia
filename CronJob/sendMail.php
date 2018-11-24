@@ -21,7 +21,12 @@ while($datos = mysqli_fetch_array($execConsulta)){
 					set correo_enviado = 'enviado'
 					where codigoEstudiante = '$codigo'";
 		$consultaUpdate = mysqli_query($conn,$update);       
-		$entry .= "Estudiante: $codigo.\n";            
+		$entry .= "Estudiante: $codigo a las $time.\n";            
+	}elseif($datos["correoEst"] != "-" && $datos["codigoEstudiante"] == '0'){
+		$update = "update LISTA_GUARDIA_VIG
+					set correo_enviado = 'No existe correo'
+					where codigoEstudiante = '$codigo'";
+		$consultaUpdate = mysqli_query($conn,$update);     
 	}elseif($datos["correoOf"] != "-" && $datos["idoficial"] != '0'){
 		enviarCorreo($datos["correoOf"],$datos["fecha"]);
 		$codigo = $datos["idoficial"];
@@ -29,7 +34,12 @@ while($datos = mysqli_fetch_array($execConsulta)){
 					set correo_enviado = 'enviado'
 					where idoficial = '$codigo'";
 		$consultaUpdate = mysqli_query($conn,$update);  
-		$entry .= "Oficial: $codigo.\n"; 
+		$entry .= "Oficial: $codigo a las $time.\n"; 
+	}else{
+		$update = "update LISTA_GUARDIA_VIG
+					set correo_enviado = 'No existe correo'
+					where idoficial = '$codigo'";
+		$consultaUpdate = mysqli_query($conn,$update);  
 	}
 }
 $open = fopen($file,"a");

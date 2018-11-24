@@ -24,16 +24,14 @@
     $band=0;
     $nombrecam=$_POST["nombredecambio"];
     $codigcam=$_POST["codigocam"];
-    $insertar= "insert into PERMISO(nombre,fechadelaguard,fechadelcamb,comentario,bandera_permiso,nombre_cam,codig_cam,documento,codigoEST)
-    values (?,?,?,?,?,?,?,?,?)";
-
-    $valores = array($nombreest,$fechaguard,$fechacambio,$mensaje,$band,$nombrecam,$codigcam,$nn,$codigoest);
-    $consulta = mysqli_query($conn,$insertar,$valores);
+    $insertar= "insert into PERMISOS(nombre,fechadelaguard,fechadelcamb,comentario,bandera_permiso,nombre_cam,codig_cam,documento,codigoEST)
+    values ('$nombreest','$fechaguard','$fechacambio','$mensaje',$band,'$nombrecam','$codigcam','$nn','$codigoest')";
+    $consulta = mysqli_query($conn,$insertar);
     if ($conn) {
 
       $handle->clean();
       echo '<script>alert("Solicitud enviada!");</script>';
-      header('Location: /Estudiante/Estudiante.php');
+      
     } else {
       echo 'error : ' . $handle->error;
     }
