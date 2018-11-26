@@ -7,6 +7,7 @@ $consultaFecha = "select fecha
 $query = mysqli_query($conn,$consultaFecha);
 $dato = mysqli_fetch_array($query);
 $fechaGuardia = $dato['fecha'];
+
 if(validateDate(date('Y-m-d'),$fechaGuardia)){
     $consultaDel = "update LISTA_GUARDIA
     set borrado = 1

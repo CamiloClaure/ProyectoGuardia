@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('../Conexion.php');
-$consulta = "select concat(ofi.apellido,' ',ofi.nombre) as 'oficial',grupo,fecha,cantidad_permisos,cargo
+$consulta = "select concat(ofi.apellido,' ',ofi.nombre) as 'oficial',grupo,fecha,cargo
 from LISTA_GUARDIA lg
 inner join OFICIAL ofi
 on ofi.idoficial = lg.oficial
@@ -15,7 +15,6 @@ if($respuesta){
     <th>Capitan de servicio</th>
     <th>Cargo</th>
     <th>Fecha</th>
-    <th>Cantidad Permisos</th>
     <th>Acciones</th></tr>';
 
 while($datos = mysqli_fetch_array($respuesta)){
@@ -31,12 +30,9 @@ while($datos = mysqli_fetch_array($respuesta)){
                     <td>
                         <input type="hidden" name=grupo class="fecha'.$id.'" value="'.$datos['fecha'].'">'.$datos['fecha'].'
                     </td>
-                    <td>
-                        <input type="hidden" name=grupo class="per'.$id.'" value="'.$datos['cantidad_permisos'].'">'. $datos['cantidad_permisos'].'
-                    </td>
-                    <td>   
+                     <td>   
                         <button name="'.$datos['grupo'].'" class="btn btn-sm btn-info btn-show p-0 visualizar" data-toggle="modal" data-target="#modalNewStd" alt="Mostrar"><img class="blanco" fill="none" name="'.$datos['grupo'].'" src="../Imagenes/svgMostrar.png" alt="Mostrar lista"/></button>
-                        <button fecha="'.$datos['fecha'].'" name="'.$datos['grupo'].'" class="btn btn-sm btn-info btn-show p-0 modificarLista" data-toggle="modal" data-target="#editarLista"><img class="modificarLista blanco" fill="none" name="'.$datos['grupo'].'" fecha="'.$datos['fecha'].'" src="../Imagenes/svgEditarPNG.png" alt="Editar lista"/></button>
+                        <button fecha="'.$datos['fecha'].'" name="'.$datos['grupo'].'" class="btn btn-sm btn-info btn-show p-0 modificarLista" data-toggle="modal" data-target="#editarLista"><img class=" blanco" fill="none" name="'.$datos['grupo'].'" fecha="'.$datos['fecha'].'" src="../Imagenes/svgEditarPNG.png" alt="Editar lista"/></button>
                         <button name="'.$datos['grupo'].'" class="btn btn-sm btn-info p-0"><img class="borrar blanco"  value="'.$datos['grupo'].'" name="'.$datos['grupo'].'" fill="none" src="../Imagenes/svgEliminar.png" alt="Eliminar lista"/></button>
                     </td>
 

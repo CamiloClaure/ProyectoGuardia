@@ -37,51 +37,21 @@ function borrarLista(evento){
 }
 
 function modificarLista(evento){
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-
-        if(dd<10) {
-            dd = '0'+dd;
-        } 
-
-        if(mm<10) {
-            mm = '0'+mm;
-        } 
-
-        today = yyyy + '' + mm + '' + dd;
-        var fechaToday = parseInt(today);
        
-        var fechaInicio = $(this).attr("fecha").split("-");
-        var fechaI = fechaInicio[0] + fechaInicio[1] + fechaInicio[2];
-        var fechaIn = parseFloat(fechaI);
-        
-        var dias = fechaIn - fechaToday;
-   
-    var grupo = parseInt(evento.target.name);
-    if(dias<0){
-        $('#tblFinalModificar').html("nell");
+        var fechaInicio = $(this).attr("fecha");
        
-    }else{
+            var grupo = parseInt(evento.target.name);
         $.ajax({
                 
             type: 'POST',
             url: 'getLista.php',
-            data: 'grupo='+grupo,
+            data: {group:grupo,date:fechaInicio},
             success: function(data){
                 $('#bodyListaModificar').html(data);
                 //alert(data);
             }
         });
-    }
     
-    
-     
-    
-        var diff_ =dias/(1000 * 60 * 60 * 24);
-        console.log("Fecha inicio: " + fechaIn + " Fecha fin: " + fechaToday);
-        console.log(dias);
    
 }
 
@@ -127,17 +97,6 @@ $('#btnCrearLista').click(function(){
     });
 });
 
-/*$('#btnModificarLista').click(function(){
-    $.ajax({
-        type: 'POST',
-        url: 'updateLista.php',
-        success: function(data){
-            $('#resultado').html(data);
-            cargarLista();
-            //location.reload();
-        }
-    });
-});*/
 
 
 
@@ -452,7 +411,7 @@ function cargarLista(){
                 btnModificar[i].addEventListener('click',modificarLista);
                 
             }
-            var btnModificar = document.querySelectorAll('.btn-modificar');
+            
             document.getElementById("btnReb").addEventListener('click',solicitud);
             document.getElementById("btnNegar").addEventListener('click',solicitudNegada);
            
